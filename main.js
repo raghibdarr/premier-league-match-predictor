@@ -9,8 +9,16 @@ const generateResult = (homeTeamPI, awayTeamPI) => {
     const eloDifference = (homeAdvantage * homeTeamPI) - awayTeamPI;
     console.log(eloDifference.toFixed(2));
 
-    if (Math.abs(eloDifference) <= 3) {
+    if (Math.abs(eloDifference) <= 10) {
         console.log("draw");
+        const randomNum = generateRandomNumber(5);
+        if (randomNum <= 2) {
+            return "DRAW";
+        } else if (randomNum === 3) {
+            return "WIN";
+        } else if (randomNum === 4) {
+            return "LOSS";
+        }
         return "DRAW";
     } else if (Math.sign(eloDifference) === 1) {
         console.log("win");
