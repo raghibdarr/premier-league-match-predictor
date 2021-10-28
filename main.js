@@ -7,10 +7,10 @@ const generateResult = (homeTeamPI, awayTeamPI) => {
     const availablePoints = 3;
     const homeAdvantage = morePointsWonAtHome/availablePoints + 1;
     const eloDifference = (homeAdvantage * homeTeamPI) - awayTeamPI;
-    console.log(eloDifference.toFixed(2));
+    // console.log(eloDifference.toFixed(2));
 
     if (Math.abs(eloDifference) <= 10) {
-        console.log("draw");
+        // console.log("draw");
         const randomNum = generateRandomNumber(5);
         if (randomNum <= 2) {
             return "DRAW";
@@ -21,11 +21,11 @@ const generateResult = (homeTeamPI, awayTeamPI) => {
         }
         return "DRAW";
     } else if (Math.sign(eloDifference) === 1) {
-        console.log("win");
+        // console.log("win");
 
         return "WIN";
     } else {
-        console.log("loss");
+        // console.log("loss");
 
         return "LOSS";
     }
@@ -134,12 +134,10 @@ const premData = {
 
 }
 
-
-
-// console.log(generatePotentialScores());
 const data = premData;
 console.log(data.generatePotentialScores());
-// console.log(data.teams['arsenal']);
+
+// Examples of generated matches
 console.log(data.generateMatch('arsenal', 'brighton'));
 console.log(data.generateMatch('brighton', 'arsenal'));
 console.log(data.generateMatch('man city', 'norwich'));
