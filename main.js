@@ -63,13 +63,13 @@ const premData = {
                             this.potentialScores.drawingScores.unlikelyDrawingScores.push(score);
                         }
                     } else if (i>j) {
-                        if (i+j<=5) {
+                        if (i+j<=4) {
                             this.potentialScores.winningScores.likelyWinningScores.push(score);
                         } else {
                             this.potentialScores.winningScores.unlikelyWinningScores.push(score);
                         }
                     } else if (i<j) {
-                        if (i+j<=5) {
+                        if (i+j<=4) {
                             this.potentialScores.losingScores.likelyLosingScores.push(score);
                         } else {
                             this.potentialScores.losingScores.unlikelyLosingScores.push(score);
