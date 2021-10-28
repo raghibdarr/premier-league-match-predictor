@@ -77,47 +77,6 @@ const premData = {
             }
         }
         return this.potentialScores;
-    },
-    generateMatch(homeTeamName, awayTeamName) {
-        let homeTeam = this.teams[homeTeamName];
-        let awayTeam = this.teams[awayTeamName];
-        let result = generateResult(homeTeam, awayTeam);
-        const randomNum = generateRandomNumber(100);
-        let finalResult;
-
-        switch (result) {
-            case "WIN":
-                if (randomNum <= 80) {
-                    const likelyWinningArray = this.potentialScores.winningScores.likelyWinningScores;
-                    finalResult = likelyWinningArray[generateRandomNumber(likelyWinningArray.length)];
-                } else {
-                    const unlikelyWinningArray = this.potentialScores.winningScores.unlikelyWinningScores;
-                    finalResult = unlikelyWinningArray[generateRandomNumber(unlikelyWinningArray.length)];
-                }
-                break;
-            case "LOSS":
-                if (randomNum <= 80) {
-                    const likelyLosingArray = this.potentialScores.losingScores.likelyLosingScores;
-                    finalResult = likelyLosingArray[generateRandomNumber(likelyLosingArray.length)];
-                } else {
-                    const unlikelyLosingArray = this.potentialScores.losingScores.unlikelyLosingScores;
-                    finalResult = unlikelyLosingArray[generateRandomNumber(unlikelyLosingArray.length)];
-                }
-                break;
-            case "DRAW":
-                if (randomNum <= 80) {
-                    const likelyDrawingArray = this.potentialScores.drawingScores.likelyDrawingScores;
-                    finalResult = likelyDrawingArray[generateRandomNumber(likelyDrawingArray.length)];
-                } else {
-                    const unlikelyDrawingArray = this.potentialScores.drawingScores.unlikelyDrawingScores;
-                    finalResult = unlikelyDrawingArray[generateRandomNumber(unlikelyDrawingArray.length)];
-                }
-                break;
-        }
-
-        console.log(finalResult);
-        return(finalResult);
-
     }
 
 
