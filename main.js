@@ -1,5 +1,24 @@
-const generateRandomNumber = num => {
+const generateRandomNumber = (num=1) => {
     return Math.floor(Math.random() * num)
+}
+
+const generateResult = (homeTeamPI, awayTeamPI) => {
+    const morePointsWonAtHome = 0.39; // teams win 0.39 more points at home than away
+    const availablePoints = 3;
+    const homeAdvantage = morePointsWonAtHome/availablePoints + 1;
+    const eloDifference = homeAdvantage * homeTeamPI - awayTeamPI;
+    if (Math.abs(eloDifference) <= 3) {
+        console.log("draw");
+        return "DRAW";
+    } else if (Math.sign(eloDifference) === 1) {
+        console.log("win");
+
+        return "WIN";
+    } else {
+        console.log("loss");
+
+        return "LOSS";
+    }
 }
 
 const premData = {
@@ -58,12 +77,56 @@ const premData = {
             }
         }
         return this.potentialScores;
+    },
+    generateMatch(homeTeamName, awayTeamName) {
+        let homeTeam = this.teams[homeTeamName];
+        let awayTeam = this.teams[awayTeamName];
+        let result = generateResult(homeTeam, awayTeam);
+        const randomNum = generateRandomNumber(100);
+        let finalResult;
+
+        switch (result) {
+            case "WIN":
+                if (randomNum <= 80) {
+                    const likelyWinningArray = this.potentialScores.winningScores.likelyWinningScores;
+                    finalResult = likelyWinningArray[generateRandomNumber(likelyWinningArray.length)];
+                } else {
+                    const unlikelyWinningArray = this.potentialScores.winningScores.unlikelyWinningScores;
+                    finalResult = unlikelyWinningArray[generateRandomNumber(unlikelyWinningArray.length)];
+                }
+                break;
+            case "LOSS":
+                if (randomNum <= 80) {
+                    const likelyLosingArray = this.potentialScores.losingScores.likelyLosingScores;
+                    finalResult = likelyLosingArray[generateRandomNumber(likelyLosingArray.length)];
+                } else {
+                    const unlikelyLosingArray = this.potentialScores.losingScores.unlikelyLosingScores;
+                    finalResult = unlikelyLosingArray[generateRandomNumber(unlikelyLosingArray.length)];
+                }
+                break;
+            case "DRAW":
+                if (randomNum <= 80) {
+                    const likelyDrawingArray = this.potentialScores.drawingScores.likelyDrawingScores;
+                    finalResult = likelyDrawingArray[generateRandomNumber(likelyDrawingArray.length)];
+                } else {
+                    const unlikelyDrawingArray = this.potentialScores.drawingScores.unlikelyDrawingScores;
+                    finalResult = unlikelyDrawingArray[generateRandomNumber(unlikelyDrawingArray.length)];
+                }
+                break;
+        }
+
+        console.log(finalResult);
+        return(finalResult);
+
     }
 
 
 }
 
 
+
 // console.log(generatePotentialScores());
 const data = premData;
 console.log(data.generatePotentialScores());
+// console.log(data.teams['arsenal']);
+console.log(data.generateMatch('arsenal', 'brighton'));
